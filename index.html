@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felo ❤️ Basbosa</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#05030c;
+ color:white;
+ font-family:Arial,sans-serif;
+ overflow:hidden;
+}
+
+.screen{
+ position:fixed;
+ inset:0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ padding:20px;
+ background:radial-gradient(ellipse,#19102e 0%,#05030c 70%);
+}
+
+.hidden{display:none!important}
+
+h1{
+ margin:10px 0;
+}
+
+.glow{
+ text-shadow:0 0 10px #ff35d5,
+ 0 0 25px #a000ff,0 0 45px #00dfff;
+}
+
+#startBtn{
+ margin-top:35px;
+ border:1px solid #ff48dc;
+ color:white;
+ background:transparent;
+ padding:16px 35px;
+ border-radius:40px;
+ font-size:19px;
+ box-shadow:0 0 15px #ff35d5, inset 0 0 15px #ff35d5;
+ cursor:pointer;
+ animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+ 50%{transform:scale(1.08);box-shadow:0 0 35px #ff35d5}
+}
+
+/* HEART */
+
+.heart-area{
+ width:min(85vw,370px);
+ aspect-ratio:1;
+ position:relative;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+.heart{
+ position:absolute;
+ width:100%;
+ height:100%;
+ overflow:visible;
+}
+
+.heart path{
+ fill:none;
+ stroke-width:2.3;
+ stroke-linecap:round;
+ stroke-dasharray:1200;
+ stroke-dashoffset:1200;
+ animation:draw 2.5s ease forwards, rainbow 4s linear infinite;
+ filter:drop-shadow(0 0 7px currentColor);
+}
+
+.heart:nth-child(2){width:78%;height:78%}
+.heart:nth-child(3){width:57%;height:57%}
+.heart:nth-child(4){width:37%;height:37%}
+
+.heart:nth-child(2) path{animation-delay:.7s}
+.heart:nth-child(3) path{animation-delay:1.3s}
+.heart:nth-child(4) path{animation-delay:1.9s}
+
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes rainbow{
+ 0%{stroke:#ff00a8}
+ 25%{stroke:#9c35ff}
+ 50%{stroke:#00eaff}
+ 75%{stroke:#00ff9d}
+ 100%{stroke:#ff00a8}
+}
+
+.heart-caption{
+ position:absolute;
+ font-size:18px;
+ color:#fff;
+ text-shadow:0 0 12px #ff40dc;
+}
+
+/* DAYS */
+
+#dayNumber{
+ font-size:clamp(65px,17vw,125px);
+ font-weight:900;
+ direction:ltr;
+ letter-spacing:-4px;
+ animation:dayIn .12s ease;
+}
+
+@keyframes dayIn{
+ from{transform:scale(1.5);opacity:0;filter:blur(12px)}
+ to{transform:scale(1);opacity:1;filter:blur(0)}
+}
+
+.day-label{
+ font-size:clamp(25px,7vw,42px);
+ color:#ff65dc;
+ text-shadow:0 0 15px #ff00c8,0 0 30px #9d00ff;
+}
+
+#firstMessage{
+ font-size:clamp(22px,6vw,35px);
+ color:#fff;
+ text-shadow:0 0 15px #ff00d4;
+ margin-top:20px;
+}
+
+#journey{
+ background:radial-gradient(ellipse,#170c30,#030208 75%);
+}
+
+#journey.flash{
+ animation:flash .2s;
+}
+
+@keyframes flash{
+ 50%{background-color:#391044}
+}
+
+.big-message{
+ font-size:clamp(40px,10vw,75px);
+ font-weight:900;
+ direction:ltr;
+ animation:zoomIn 1.2s ease both;
+}
+
+@keyframes zoomIn{
+ from{transform:scale(2);opacity:0;filter:blur(15px)}
+ to{transform:scale(1);opacity:1;filter:blur(0)}
+}
+
+#ending{
+ background:radial-gradient(ellipse,#260d34,#05020a 75%);
+}
+
+.final-text{
+ max-width:700px;
+ line-height:2;
+ font-size:clamp(19px,4.8vw,27px);
+}
+
+.final-line{
+ opacity:0;
+ transform:translateY(20px);
+ transition:1s;
+ margin:12px 0;
+}
+
+.final-line.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+.signature{
+ direction:ltr;
+ font-size:clamp(28px,7vw,47px);
+ font-weight:900;
+ margin-top:30px;
+ color:#ff65dc;
+ text-shadow:0 0 12px #ff00bd,0 0 30px #9e00ff;
+}
+
+.replay{
+ margin-top:25px;
+ background:transparent;
+ border:1px solid #ff65dc;
+ border-radius:30px;
+ padding:12px 25px;
+ color:white;
+ font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+
+<section class="screen" id="intro">
+ <h1 class="glow" style="font-size:clamp(32px,9vw,55px)">
+ For My Basbosa ❤️
+ </h1>
+ <p style="color:#d8b9ff;font-size:18px">
+ There's something I want you to see...
+ </p>
+ <button id="startBtn" onclick="startStory()">Touch My Heart ❤️</button>
+</section>
+
+<!-- HEART -->
+
+<section class="screen hidden" id="heartScreen">
+ <h1 class="glow">Our Story Begins...</h1>
+
+ <div class="heart-area">
+  <svg class="heart" viewBox="0 0 100 100">
+   <path d="M50 88 C40 75 5 53 5 28 C5 3 35 0 50 24 C65 0 95 3 95 28 C95 53 60 75 50 88Z"/>
+  </svg>
+  <svg class="heart" viewBox="0 0 100 100">
+   <path d="M50 88 C40 75 5 53 5 28 C5 3 35 0 50 24 C65 0 95 3 95 28 C95 53 60 75 50 88Z"/>
+  </svg>
+  <svg class="heart" viewBox="0 0 100 100">
+   <path d="M50 88 C40 75 5 53 5 28 C5 3 35 0 50 24 C65 0 95 3 95 28 C95 53 60 75 50 88Z"/>
+  </svg>
+  <svg class="heart" viewBox="0 0 100 100">
+   <path d="M50 88 C40 75 5 53 5 28 C5 3 35 0 50 24 C65 0 95 3 95 28 C95 53 60 75 50 88Z"/>
+  </svg>
+  <div class="heart-caption">F + B ❤️</div>
+ </div>
+
+ <p class="glow">Two hearts, one story.</p>
+</section>
+
+<!-- JOURNEY -->
+
+<section class="screen hidden" id="journey">
+ <div id="dayNumber">DAY 1</div>
+ <div class="day-label" id="dayLabel">14 / 06 / 2026</div>
+ <div id="firstMessage">أكبر نعمة ❤️</div>
+</section>
+
+<!-- ENDING -->
+
+<section class="screen hidden" id="ending">
+
+ <div class="final-text">
+  <div class="final-line" id="l1">
+   151 يوم عدينا بكتير أوي...
+  </div>
+  <div class="final-line" id="l2">
+   ومشاكل، بس عمرك ما قلّيتي في نظري.
+  </div>
+  <div class="final-line" id="l3">
+   وكنت دايمًا بحبك زيادة.
+  </div>
+  <div class="final-line" id="l4">
+   بجد بحبك أوي ❤️
+  </div>
+  <div class="final-line" id="l5">
+   ومش عايز غيرك، وهاخدك ليا وبس
+   يا أحلى بسبوسة في الدنيا.
+  </div>
+ </div>
+
+ <div class="final-line signature" id="l6">
+  From A Husband To Wife
+ </div>
+
+ <div class="final-line signature" id="l7">
+  Felo Loves Basbosa ❤️
+ </div>
+
+ <button class="replay" onclick="location.reload()">Watch Again ↻</button>
+</section>
+
+<script>
+
+const startDate = new Date(2026,5,14);
+
+function getDayCount(){
+ const now = new Date();
+ const today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ return Math.max(1,Math.floor((today-startDate)/86400000)+1);
+}
+
+function show(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+}
+
+function wait(ms){
+ return new Promise(resolve=>setTimeout(resolve,ms));
+}
+
+async function startStory(){
+
+ show('heartScreen');
+ await wait(5000);
+
+ show('journey');
+
+ const totalDays = getDayCount();
+ const number = document.getElementById('dayNumber');
+ const label = document.getElementById('dayLabel');
+ const message = document.getElementById('firstMessage');
+ const journey = document.getElementById('journey');
+
+ // DAY 1
+ number.textContent='DAY 1';
+ label.textContent='14 / 06 / 2026';
+ message.style.display='block';
+
+ await wait(1500);
+
+ message.style.display='none';
+
+ // FAST VIDEO-LIKE DAY SEQUENCE
+ for(let day=2;day<=totalDays;day++){
+
+  number.textContent='DAY '+day;
+  label.textContent='OUR DAYS ❤️';
+
+  number.style.animation='none';
+  void number.offsetWidth;
+  number.style.animation='dayIn .12s ease';
+
+  journey.classList.remove('flash');
+  void journey.offsetWidth;
+  journey.classList.add('flash');
+
+  const progress=day/totalDays;
+  const speed=75-(progress*48);
+
+  await wait(Math.max(25,speed));
+ }
+
+ await wait(900);
+
+ // UNTIL NOW
+ number.style.fontSize='clamp(48px,12vw,90px)';
+ number.textContent='UNTIL NOW';
+ label.textContent='151 DAYS ❤️';
+ await wait(2300);
+
+ // UNTIL MARRIAGE
+ number.textContent='UNTIL MARRIAGE';
+ label.textContent='OUR NEXT CHAPTER 💍';
+ await wait(3500);
+
+ show('ending');
+
+ // FINAL MESSAGE
+ for(let i=1;i<=7;i++){
+  await wait(i===6?1400:1100);
+  document.getElementById('l'+i).classList.add('show');
+ }
+}
+
+</script>
+</body>
+</html>
